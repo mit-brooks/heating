@@ -1,0 +1,16 @@
+main hall: ksq232n966nflibo7hsqhlt51k@group.calendar.google.com
+back hall: 9a10hfkfa7b1ole7cfme9hu39k@group.calendar.google.com
+
+/etc/cron.d/gcalcron:
+* * * * * root /usr/bin/python /root/gcalcron_heating/gcalcron.py -s main.settings.json >/dev/null
+* * * * * root /usr/bin/python /root/gcalcron_heating/gcalcron.py -s back.settings.json >/dev/null
+
+commands:
+echo on $(date) - $(python relay.py 1)>> /root/gcalcron_heating/testing.log
+echo off $(date) - $(python relay.py 0)>> /root/gcalcron_heating/testing.log
+
+disable current cron
+
+test ebe relay
+
+install gcalcron 

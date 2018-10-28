@@ -1,0 +1,6 @@
+*.pyc
+*~
+*.log
+*.gz
+*.dat
+client_secrets.json
