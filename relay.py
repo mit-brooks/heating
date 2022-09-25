@@ -13,11 +13,16 @@ def relay(position='not_defined', pin=a):
     if position != 'not_defined':
         if position or position == 'closed' or int(position) == 1:
             rly.on()
+            print("on")
         elif not position or position == 'open' or int(position) == 0:
             rly.off()
+            print("off")
         else:
             print('unknown position {}'.format(position))
-    return rly.value
+    val = rly.value
+    print(f"relay value{val}")
+    rly.close()
+    return val
 
 
 if __name__ == "__main__":
