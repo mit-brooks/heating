@@ -9,7 +9,7 @@ s = 11  # SPI
 
 
 def relay(position='not_defined', pin=a):
-    rly = LED(pin)
+    rly = LED(pin, initial_value=None)
     if position != 'not_defined':
         if position or position == 'closed' or int(position) == 1:
             rly.on()
