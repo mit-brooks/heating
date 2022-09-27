@@ -203,8 +203,8 @@ class GCalCron:
       with open(self.settings_file) as f:
         self.settings = json.load(f)
     except IOError:
-      calendarId = raw_input('Calendar id (in the form of XXXXX....XXXX@group.calendar.google.com or for the main one just your Google email): ')
-      relay_pin = int(raw_input('which pin is the relay you want to control connected to eg: "1" for back hall, "2" for main hall (24 = a and 25 = b for slice of relay)'))
+      calendarId = input('Calendar id (in the form of XXXXX....XXXX@group.calendar.google.com or for the main one just your Google email): ')
+      relay_pin = int(input('which pin is the relay you want to control connected to eg: "1" for back hall, "2" for main hall (24 = a and 25 = b for slice of relay)'))
       self.init_settings(calendarId, relay_pin)
       self.save_settings()
 
