@@ -27,6 +27,7 @@ from relay import relay
 # GCalCron
 import json
 import datetime
+from datetime import timezone
 import dateutil.parser
 from dateutil.tz import gettz
 import time
@@ -242,7 +243,7 @@ class GCalCron:
         if self.settings['last_sync']:
             temp = dateutil.parser.parse(self.settings['last_sync'])
             # and the last time was more than num_days ago (because that would only get events in the past...)
-            if temp - datetime.timedelta(days=0) > datetime.datetime.now() - num_days:
+            if temp - datetime.timedelta(days=0) > datetime.datetime.now(gettz()) - num_days:
                 last_sync = temp
 
         sync_start = datetime.datetime.now(gettz())
@@ -259,9 +260,9 @@ class GCalCron:
         events = merge_events(local_events, new_events)
 
         # update the relay position
-        update_relay(self.settings['relay_pin'], events, datetime.datetime.now())
+        update_relay(self.settings['relay_pin'], events, datetime.datetime.now(gettz()))
 
-        events = prune_old_events(events, datetime.datetime.now())
+        events = prune_old_events(events, datetime.datetime.now(gettz()))
 
         self.settings['last_sync'] = str(sync_start)
         self.settings['events'] = events
