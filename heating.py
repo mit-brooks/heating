@@ -372,10 +372,8 @@ def main(argv):
     # Parse the command-line flags.
     flags = parser.parse_args(argv[1:])
 
-    level = getattr(logging)
     logger.setLevel(logging.INFO)
     h1 = logging.StreamHandler(sys.stdout)
-    h1.setLevel(level)
     logger.addHandler(h1)
 
     fh = logging.FileHandler(os.path.join(os.path.dirname(__file__), 'heating.log'))
