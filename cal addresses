@@ -1,5 +1,6 @@
-main hall: ksq232n966nflibo7hsqhlt51k@group.calendar.google.com
-back hall: 9a10hfkfa7b1ole7cfme9hu39k@group.calendar.google.com
+main hall:       ksq232n966nflibo7hsqhlt51k@group.calendar.google.com
+back hall:       9a10hfkfa7b1ole7cfme9hu39k@group.calendar.google.com
+Tim and Fiona's: mnojcngcfi5op4v4518253bfk4@group.calendar.google.com
 
 /etc/cron.d/gcalcron:
 * * * * * root /usr/bin/python /root/gcalcron_heating/gcalcron.py -s main.settings.json >/dev/null
