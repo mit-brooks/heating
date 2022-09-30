@@ -27,9 +27,7 @@ def relay(position='not_defined', pin=a):
             print("off")
         else:
             print('unknown position {}'.format(position))
-    val = rly.value
-    print(f"relay value {val}")
-    return val
+    return rly.value
 
 
 if __name__ == "__main__":
@@ -40,7 +38,7 @@ if __name__ == "__main__":
     parser.add_argument('--position', '-p', default='not_defined',
                         help='send integer 1 or "close" or boolean True to close the relay')
 
-    flags=parser.parse_args(sys.argv[1:])
+    flags = parser.parse_args(sys.argv[1:])
     print(relay(position=flags.position, pin=int(flags.relay)))
 #  if len(sys.argv) == 2:
 #    #print(sys.argv[1], type(sys.argv[1]))
