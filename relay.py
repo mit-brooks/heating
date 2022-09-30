@@ -21,7 +21,6 @@ def relay(position='not_defined', pin=a):
             print('unknown position {}'.format(position))
     val = rly.value
     print(f"relay value{val}")
-    rly.close()
     return val
 
 
