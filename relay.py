@@ -17,7 +17,7 @@ gpiozero.pins.rpigpio.RPiGPIOPin.close = close
 
 
 def relay(position='not_defined', pin=a):
-    rly = DigitalOutputDevice(pin, pin_factory=gpiozero.pins.rpigpio.RPiGPIOFactory())
+    rly = DigitalOutputDevice(pin, initial_value=None, pin_factory=gpiozero.pins.rpigpio.RPiGPIOFactory())
     if position != 'not_defined':
         if position == 'closed' or int(position) == 1:
             rly.on()
