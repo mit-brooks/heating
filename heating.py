@@ -372,7 +372,7 @@ def main(argv):
     # Parse the command-line flags.
     flags = parser.parse_args(argv[1:])
 
-    level = getattr(logging, flags.logging_level)
+    level = getattr(logging)
     logger.setLevel(logging.INFO)
     h1 = logging.StreamHandler(sys.stdout)
     h1.setLevel(level)
