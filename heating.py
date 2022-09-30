@@ -241,7 +241,7 @@ class GCalCron:
         # if we have recorded the last time we sync'ed
         if self.settings['last_sync']:
             # and the last time was more than num_days ago (because that would only get events in the past...)
-            if last_sync > datetime.datetime.now() - num_days:
+            if dateutil.parser.parse(self.settings['last_sync']) > datetime.datetime.now() - num_days:
                 last_sync = dateutil.parser.parse(self.settings['last_sync'])
 
         sync_start = datetime.datetime.now(gettz())
