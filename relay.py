@@ -7,6 +7,7 @@ a = 24  # relay A
 b = 25  # relay B
 s = 11  # SPI
 
+
 def close(self):
     pass
 
@@ -15,7 +16,7 @@ DigitalOutputDevice.close = close
 
 
 def relay(position='not_defined', pin=a):
-    rly = DigitalOutputDevice(pin, initial_value=None)
+    rly = DigitalOutputDevice(pin)
     if position != 'not_defined':
         if position == 'closed' or int(position) == 1:
             rly.on()
