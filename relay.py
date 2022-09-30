@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from gpiozero import DigitalOutputDevice  #
+import gpiozero.pins.rpigpio
 import sys
 import argparse
 a = 24  # relay A
@@ -12,7 +13,7 @@ def close(self):
     pass
 
 
-DigitalOutputDevice.close = close
+gpiozero.pins.rpigpio.RPiGPIOPin.close = close
 
 
 def relay(position='not_defined', pin=a):
