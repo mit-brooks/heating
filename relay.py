@@ -1,15 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from gpiozero import LED  # Relay can look like an LED ;-)
+from gpiozero import DigitalOutputDevice  #
 import sys
 import argparse
 a = 24  # relay A
 b = 25  # relay B
 s = 11  # SPI
 
+def close(self):
+    pass
+
+
+DigitalOutputDevice.close = close
+
 
 def relay(position='not_defined', pin=a):
-    rly = LED(pin, initial_value=None)
+    rly = DigitalOutputDevice(pin, initial_value=None)
     if position != 'not_defined':
         if position == 'closed' or int(position) == 1:
             rly.on()
@@ -20,7 +26,7 @@ def relay(position='not_defined', pin=a):
         else:
             print('unknown position {}'.format(position))
     val = rly.value
-    print(f"relay value{val}")
+    print(f"relay value {val}")
     return val
 
 
