@@ -325,9 +325,9 @@ def update_relay(pin, events, now):
     relay_pos = relay(pin=pin)
     set_relay = 0  # default is to set relay off
     for event in events:  # for each event
-        start_time = dateutil.parser.parse(event['start']['dateTime']).replace(tzinfo=None)
+        start_time = dateutil.parser.parse(event['start']['dateTime'])
         # print(start_time)
-        end_time = dateutil.parser.parse(event['end']['dateTime']).replace(tzinfo=None)
+        end_time = dateutil.parser.parse(event['end']['dateTime'])
         # print(end_time)
         # print(event['status'])
         logger.debug(event['status'])
@@ -363,7 +363,7 @@ def prune_old_events(events, now):
   [{u'status': u'confirmed', u'updated': u'2013-12-22T19:49:13.750Z', u'end': {u'dateTime': u'2114-12-07T22:00:00+01:00'}, u'description': u'', u'summary': u'heat', u'start': {u'dateTime': u'2114-12-07T21:00:00+01:00'}, u'id': u'olbia2urfm1ns0h88v4u0d9a5g'}]
   """
     for event in events:  # for each event
-        end_time = dateutil.parser.parse(event['end']['dateTime']).replace(tzinfo=None)
+        end_time = dateutil.parser.parse(event['end']['dateTime'])
         if end_time < now:  # and the event is currently occuring
             logger.info('removing event {0}: in the past'.format(event[u'id']))
             events.remove(event)
