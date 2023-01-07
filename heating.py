@@ -370,7 +370,7 @@ def prune_old_events(events, now):
             end_time = dateutil.parser.parse(event['end']['dateTime']).date()
         except KeyError:
             end_time = dateutil.parser.parse(event['end']['date']).date()
-        if end_time < now:  # and the event is currently occuring
+        if end_time < now.date():  # and the event is currently occuring
             logger.info('removing event {0}: in the past'.format(event[u'id']))
             events.remove(event)
     return events
