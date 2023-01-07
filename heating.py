@@ -325,20 +325,23 @@ def update_relay(pin, events, now):
     relay_pos = relay(pin=pin)
     set_relay = 0  # default is to set relay off
     for event in events:  # for each event
-        start_time = dateutil.parser.parse(event['start']['dateTime'])
+        try:
+            start_time = dateutil.parser.parse(event['start']['dateTime'])
+            end_time = dateutil.parser.parse(event['end']['dateTime'])
+        except KeyError:
+            continue  # No Start or End Times are defined, so skip this event
         # print(start_time)
-        end_time = dateutil.parser.parse(event['end']['dateTime'])
         # print(end_time)
         # print(event['status'])
         logger.debug(event['status'])
-        if (event[u'status'] != u'cancelled'):  # if the event hasn't been canceled
+        if event[u'status'] != u'cancelled':  # if the event hasn't been canceled
             if start_time < now < end_time:  # and the event is currently occuring
                 set_relay = 1  # turn relay on
                 # print('relay should be on')
                 break  # no need to look further
 
     relay(pin=pin, position=set_relay)  # set new relay position
-    if (relay_pos != set_relay):
+    if relay_pos != set_relay:
         if relay(pin=pin) == 1:
             logger.info('turned relay {0} on at  {1}'.format(pin, now))
             # print('turned relay {0} on at  {1}'.format(pin, now))
@@ -363,7 +366,10 @@ def prune_old_events(events, now):
   [{u'status': u'confirmed', u'updated': u'2013-12-22T19:49:13.750Z', u'end': {u'dateTime': u'2114-12-07T22:00:00+01:00'}, u'description': u'', u'summary': u'heat', u'start': {u'dateTime': u'2114-12-07T21:00:00+01:00'}, u'id': u'olbia2urfm1ns0h88v4u0d9a5g'}]
   """
     for event in events:  # for each event
-        end_time = dateutil.parser.parse(event['end']['dateTime'])
+        try:
+            end_time = dateutil.parser.parse(event['end']['dateTime']).date()
+        except KeyError:
+            end_time = dateutil.parser.parse(event['end']['date']).date()
         if end_time < now:  # and the event is currently occuring
             logger.info('removing event {0}: in the past'.format(event[u'id']))
             events.remove(event)
