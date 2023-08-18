@@ -33,8 +33,10 @@ def relay(position='not_defined', pin=a):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--relay', '-r', default='1', help='the relay number - 25=back hall, 24=main hall, \nBC Robitics 4 channel relay hat: 4=Relay 1, 27=Relay 2, 22=relay3, 17=relay4')
+        formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('--relay', '-r', default='1', help='the relay number: \nSlice of pi: \n'
+                                                           '   25=back hall, \n   24=main hall, \nBC Robitics 4 channel relay hat: \n'
+                                                           '   4=Relay 1,\n   27=Relay 2,\n   22=relay3,\n   17=relay4')
     parser.add_argument('--position', '-p', default='not_defined',
                         help='send integer 1 or "close" or boolean True to close the relay')
 
