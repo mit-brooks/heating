@@ -203,7 +203,12 @@ class GCalCron:
             calendarId = input(
                 'Calendar id (in the form of XXXXX....XXXX@group.calendar.google.com or for the main one just your Google email): ')
             relay_pin = int(input(
-                'which pin is the relay you want to control connected to eg: "1" for back hall, "2" for main hall (24 = a and 25 = b for slice of relay)'))
+                'Which pin is the relay you want to control connected to?\n\teg: "1" for back hall, "2" for main hall for serial controlled relay board \n\t(24 = a and 25 = b for slice of relay)'
+                '\nfor BC robotic 4 relay hat:'
+                '\n\t4:  Relay 1'
+                '\n\t27: Relay 2'
+                '\n\t22: Relay 3'
+                '\n\t17: Relay 4'))
             self.init_settings(calendarId, relay_pin)
             self.save_settings()
 
