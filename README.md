@@ -56,3 +56,6 @@ Steps to install from a fresh raspberry pi OS:
      - close cron, test once more that adding a calendar event triggers the relay (now without running the script manually)
 You are done!
 
+ps - if you want to connect the raspberry pi to the VPN running on pi-server, install the open vpn client using instructions [here](https://www.ovpn.com/en/guides/raspberry-pi-raspbian)
+
+copy the ovpn config file created on the ovpn server when creating the new client user
